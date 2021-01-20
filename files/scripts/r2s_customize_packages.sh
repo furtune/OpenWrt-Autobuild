@@ -10,7 +10,7 @@ sed -i 's,16384,65536,g' package/kernel/linux/files/sysctl-nf-conntrack.conf
 # feed update
 ./scripts/feeds update -a && ./scripts/feeds install -a
 
-# Necessary patches from coolsnowwolf
+# Necessary patches from coolsnowwolf/lede
 #rm -rf target/linux/rockchip/patches-5.4
 #svn co https://github.com/coolsnowwolf/lede/trunk/target/linux/rockchip/patches-5.4 target/linux/rockchip/patches-5.4
 pushd target/linux/rockchip/patches-5.4
@@ -23,7 +23,8 @@ wget https://raw.githubusercontent.com/coolsnowwolf/lede/master/target/linux/roc
 popd
 mkdir -p target/linux/rockchip/files/drivers/char/hw_random
 wget -P target/linux/rockchip/files/drivers/char/hw_random/ https://raw.githubusercontent.com/coolsnowwolf/lede/master/target/linux/rockchip/files/drivers/char/hw_random/rockchip-rng.c
-
+# Necessary patches from project-openwrt/openwrt
+wget -P target/linux/generic/pending-5.4/ https://raw.githubusercontent.com/project-openwrt/openwrt/master/target/linux/generic/pending-5.4/312-arm64-cpuinfo-Add-model-name-in-proc-cpuinfo-for-64bit-ta.patch
 
 # Access Control
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-accesscontrol package/new/luci-app-accesscontrol
